@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Foodie - Food Ordering</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🍴 Foodie
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#menu">Menu</a>
+            <a href="#" onclick="openOrders(); return false;">My Orders</a>
+
+            <button
+                class="login-nav-btn"
+                onclick="openLogin()">
+
+                👤 Login
+
+            </button>
+
+            <button
+                class="cart-button"
+                onclick="openCart()">
+
+                🛒 Cart
+
+                <span id="cartCount">
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <p class="welcome-text">
+                Welcome to Foodie 🍴
+            </p>
+
+            <h1>
+                Delicious Food,
+                <span>Delivered Fast!</span>
+            </h1>
+
+            <p>
+                Order your favourite food from Foodie
+                and enjoy delicious meals at your doorstep.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="hero-btn"
+                    onclick="goToMenu()">
+
+                    Order Now 🍔
+
+                </button>
+
+
+                <button
+                    class="hero-login-btn"
+                    onclick="openLogin()">
+
+                    Login / Sign Up 👤
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <section
+        id="categories"
+        class="categories-section">
+
+        <h2>
+            Food Categories
+        </h2>
+
+        <p class="section-subtitle">
+            Choose your favourite category
+        </p>
+
+
+        <div class="categories">
+
+
+            <div
+                class="category-card"
+                onclick="filterCategory('Pizza')">
+
+                <div class="category-icon">
+                    🍕
+                </div>
+
+                <h3>
+                    Pizza
+                </h3>
+
+            </div>
+
+
+            <div
+                class="category-card"
+                onclick="filterCategory('Burger')">
+
+                <div class="category-icon">
+                    🍔
+                </div>
+
+                <h3>
+                    Burger
+                </h3>
+
+            </div>
+
+
+            <div
+                class="category-card"
+                onclick="filterCategory('Noodles')">
+
+                <div class="category-icon">
+                    🍜
+                </div>
+
+                <h3>
+                    Noodles
+                </h3>
+
+            </div>
+
+
+            <div
+                class="category-card"
+                onclick="filterCategory('Chicken')">
+
+                <div class="category-icon">
+                    🍗
+                </div>
+
+                <h3>
+                    Chicken
+                </h3>
+
+            </div>
+
+
+            <div
+                class="category-card"
+                onclick="filterCategory('Desserts')">
+
+                <div class="category-icon">
+                    🍰
+                </div>
+
+                <h3>
+                    Desserts
+                </h3>
+
+            </div>
+
+
+            <div
+                class="category-card"
+                onclick="filterCategory('Snacks')">
+
+                <div class="category-icon">
+                    🍟
+                </div>
+
+                <h3>
+                    Snacks
+                </h3>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         MENU
+    ========================== -->
+
+    <section
+        id="menu"
+        class="menu-section">
+
+        <h2>
+            Our Delicious Menu
+        </h2>
+
+        <p class="section-subtitle">
+            Click any food card to see full details
+        </p>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-container">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search your favourite food..."
+                onkeyup="searchFood()">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+        </div>
+
+
+        <button
+            class="show-all-btn"
+            onclick="showAllFoods()">
+
+            Show All Foods
+
+        </button>
+
+
+
+        <!-- =========================
+             FOOD GRID
+        ========================== -->
+
+        <div class="food-grid">
+
+
+            <!-- PIZZA -->
+
+            <div
+                class="food-card"
+                data-category="Pizza"
+                onclick="openFoodDetails(
+                    'Cheese Pizza',
+                    249,
+                    'Delicious cheesy pizza topped with fresh vegetables and extra mozzarella cheese.',
+                    '4.8',
+                    '25 min',
+                    'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80'
+                )">
+
+                <img
+                    src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
+                    alt="Cheese Pizza"
+                    class="food-photo">
+
+                <h3>
+                    Cheese Pizza
+                </h3>
+
+                <p>
+                    Cheesy pizza with fresh toppings.
+                </p>
+
+                <div class="food-info">
+
+                    <span>
+                        ⭐ 4.8
+                    </span>
+
+                    <span>
+                        🕐 25 min
+                    </span>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <strong>
+                        ₹249
+                    </strong>
+
+                    <button
+                        class="add-btn"
+                        onclick="event.stopPropagation(); addToCart('Cheese Pizza', 249)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BURGER -->
+
+            <div
+                class="food-card"
+                data-category="Burger"
+                onclick="openFoodDetails(
+                    'Classic Burger',
+                    199,
+                    'Juicy classic burger made with a soft bun, crispy lettuce, fresh vegetables and a delicious sauce.',
+                    '4.7',
+                    '20 min',
+                    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'
+                )">
+
+                <img
+                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+                    alt="Classic Burger"
+                    class="food-photo">
+
+                <h3>
+                    Classic Burger
+                </h3>
+
+                <p>
+                    Juicy burger with fresh vegetables.
+                </p>
+
+                <div class="food-info">
+
+                    <span>
+                        ⭐ 4.7
+                    </span>
+
+                    <span>
+                        🕐 20 min
+                    </span>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <strong>
+                        ₹199
+                    </strong>
+
+                    <button
+                        class="add-btn"
+                        onclick="event.stopPropagation(); addToCart('Classic Burger', 199)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NOODLES -->
+
+            <div
+                class="food-card"
+                data-category="Noodles"
+                onclick="openFoodDetails(
+                    'Veg Noodles',
+                    179,
+                    'Tasty vegetable noodles cooked with fresh vegetables, delicious sauces and aromatic spices.',
+                    '4.6',
+                    '20 min',
+                    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80'
+                )">
+
+                <img
+                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80"
+                    alt="Veg Noodles"
+                    class="food-photo">
+
+                <h3>
+                    Veg Noodles
+                </h3>
+
+                <p>
+                    Delicious noodles with fresh vegetables.
+                </p>
+
+                <div class="food-info">
+
+                    <span>
+                        ⭐ 4.6
+                    </span>
+
+                    <span>
+                        🕐 20 min
+                    </span>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <strong>
+                        ₹179
+                    </strong>
+
+                    <button
+                        class="add-btn"
+                        onclick="event.stopPropagation(); addToCart('Veg Noodles', 179)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CHICKEN -->
+
+            <div
+                class="food-card"
+                data-category="Chicken"
+                onclick="openFoodDetails(
+                    'Chicken Rice',
+                    229,
+                    'Flavourful chicken rice prepared with tender chicken pieces, aromatic rice and special spices.',
+                    '4.8',
+                    '30 min',
+                    'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80'
+                )">
+
+                <img
+                    src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=800&q=80"
+                    alt="Chicken Rice"
+                    class="food-photo">
+
+                <h3>
+                    Chicken Rice
+                </h3>
+
+                <p>
+                    Aromatic rice with delicious chicken.
+                </p>
+
+                <div class="food-info">
+
+                    <span>
+                        ⭐ 4.8
+                    </span>
+
+                    <span>
+                        🕐 30 min
+                    </span>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <strong>
+                        ₹229
+                    </strong>
+
+                    <button
+                        class="add-btn"
+                        onclick="event.stopPropagation(); addToCart('Chicken Rice', 229)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CAKE -->
+
+            <div
+                class="food-card"
+                data-category="Desserts"
+                onclick="openFoodDetails(
+                    'Chocolate Cake',
+                    149,
+                    'Rich and creamy chocolate cake made with soft chocolate sponge and delicious chocolate frosting.',
+                    '4.9',
+                    '15 min',
+                    'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80'
+                )">
+
+                <img
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
+                    alt="Chocolate Cake"
+                    class="food-photo">
+
+                <h3>
+                    Chocolate Cake
+                </h3>
+
+                <p>
+                    Soft and creamy chocolate cake.
+                </p>
+
+                <div class="food-info">
+
+                    <span>
+                        ⭐ 4.9
+                    </span>
+
+                    <span>
+                        🕐 15 min
+                    </span>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <strong>
+                        ₹149
+                    </strong>
+
+                    <button
+                        class="add-btn"
+                        onclick="event.stopPropagation(); addToCart('Chocolate Cake', 149)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FRIES -->
+
+            <div
+                class="food-card"
+                data-category="Snacks"
+                onclick="openFoodDetails(
+                    'French Fries',
+                    99,
+                    'Crispy golden French fries seasoned perfectly and served hot and fresh.',
+                    '4.7',
+                    '15 min',
+                    'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80'
+                )">
+
+                <img
+                    src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80"
+                    alt="French Fries"
+                    class="food-photo">
+
+                <h3>
+                    French Fries
+                </h3>
+
+                <p>
+                    Crispy golden French fries.
+                </p>
+
+                <div class="food-info">
+
+                    <span>
+                        ⭐ 4.7
+                    </span>
+
+                    <span>
+                        🕐 15 min
+                    </span>
+
+                </div>
+
+                <div class="food-bottom">
+
+                    <strong>
+                        ₹99
+                    </strong>
+
+                    <button
+                        class="add-btn"
+                        onclick="event.stopPropagation(); addToCart('French Fries', 99)">
+
+                        Add to Cart
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CART
+    ========================== -->
+
+    <div
+        id="cartOverlay"
+        class="cart-overlay">
+
+        <div class="cart-box">
+
+            <button
+                class="close-btn"
+                onclick="closeCart()">
+
+                ✕
+
+            </button>
+
+            <h2>
+                🛒 Your Cart
+            </h2>
+
+            <div id="cartItems">
+
+                <p class="empty-cart">
+                    Your cart is empty.
+                </p>
+
+            </div>
+
+            <div class="cart-total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="cartTotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+            <button
+                class="checkout-btn"
+                onclick="openCheckout()">
+
+                Proceed to Checkout
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         FOOD DETAILS
+    ========================== -->
+
+    <div
+        id="foodDetailsOverlay"
+        class="food-details-overlay">
+
+        <div class="food-details-box">
+
+            <button
+                class="food-details-close"
+                onclick="closeFoodDetails()">
+
+                ✕
+
+            </button>
+
+            <img
+                id="detailsImage"
+                class="details-image"
+                src=""
+                alt="Food">
+
+            <div class="details-content">
+
+                <h2 id="detailsName">
+                    Food Name
+                </h2>
+
+                <p id="detailsDescription">
+                    Food description
+                </p>
+
+                <div class="details-meta">
+
+                    <span id="detailsRating">
+                        ⭐ 4.8
+                    </span>
+
+                    <span id="detailsDelivery">
+                        🕐 20 min
+                    </span>
+
+                </div>
+
+                <div
+                    id="detailsPrice"
+                    class="details-price">
+
+                    ₹0
+
+                </div>
+
+                <div class="details-quantity">
+
+                    <button
+                        onclick="changeDetailsQuantity(-1)">
+
+                        −
+
+                    </button>
+
+                    <span id="detailsQuantity">
+                        1
+                    </span>
+
+                    <button
+                        onclick="changeDetailsQuantity(1)">
+
+                        +
+
+                    </button>
+
+                </div>
+
+                <button
+                    class="details-add-btn"
+                    onclick="addDetailsToCart()">
+
+                    Add to Cart 🛒
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         CHECKOUT
+    ========================== -->
+
+    <div
+        id="checkoutOverlay"
+        class="checkout-overlay">
+
+        <div class="checkout-box">
+
+            <button
+                class="close-btn"
+                onclick="closeCheckout()">
+
+                ✕
+
+            </button>
+
+            <h2>
+                🧾 Checkout
+            </h2>
+
+            <p class="checkout-subtitle">
+                Enter your delivery details
+            </p>
+
+            <form onsubmit="placeOrder(event)">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Enter your name">
+
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="customerPhone"
+                    placeholder="Enter phone number">
+
+
+                <label>
+                    Delivery Address
+                </label>
+
+                <textarea
+                    id="customerAddress"
+                    placeholder="Enter your delivery address"
+                    rows="4"></textarea>
+
+
+                <label>
+                    Payment Method
+                </label>
+
+                <select id="paymentMethod">
+
+                    <option value="">
+                        Select Payment Method
+                    </option>
+
+                    <option value="Cash on Delivery">
+                        Cash on Delivery
+                    </option>
+
+                    <option value="UPI">
+                        UPI
+                    </option>
+
+                    <option value="Card">
+                        Card
+                    </option>
+
+                </select>
+
+<div class="checkout-summary">
+
+    <h3>🧾 Order Summary</h3>
+
+    <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="checkoutSubtotal">₹0</span>
+    </div>
+
+    <div class="summary-row">
+        <span>Delivery Fee</span>
+        <span id="deliveryFee">₹40</span>
+    </div>
+
+    <div class="summary-row total-row">
+        <strong>Total</strong>
+        <strong id="checkoutTotal">₹0</strong>
+    </div>
+
+</div>
+
+  <button
+    type="button"
+    class="place-order-btn"
+    onclick="placeOrder(event)">
+
+    Place Order 🍽️
+
+  </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+   <!-- =========================
+     ORDER SUCCESS
+========================== -->
+
+<div id="orderSuccess" class="order-success">
+
+    <div class="success-box">
+
+        <div class="success-icon">✓</div>
+
+        <h2>Order Confirmed! 🎉</h2>
+
+        <p class="success-message">
+            Thank you for ordering from Foodie,
+            <span id="successName">Customer</span>! ❤️
+        </p>
+
+        <div class="order-info">
+
+            <p>
+                <strong>Order ID:</strong>
+                <span id="orderId"></span>
+            </p>
+
+            <p>
+                <strong>Total Amount:</strong>
+                <span id="successTotal"></span>
+            </p>
+
+            <p>
+                <strong>Payment:</strong>
+                <span id="successPayment"></span>
+            </p>
+
+        </div>
+
+        <p class="delivery-message">
+            🚴 Your delicious food is being prepared!
+        </p>
+
+        <!-- ORDER TRACKING -->
+
+        <div class="order-tracking">
+
+            <h3>📦 Order Status</h3>
+
+            <div class="tracking-step active">
+                <span class="tracking-icon">✅</span>
+                <div>
+                    <strong>Order Confirmed</strong>
+                    <p>Your order has been received</p>
+                </div>
+            </div>
+
+            <div class="tracking-line"></div>
+
+            <div class="tracking-step">
+                <span class="tracking-icon">👨‍🍳</span>
+                <div>
+                    <strong>Preparing</strong>
+                    <p>Restaurant is preparing your food</p>
+                </div>
+            </div>
+
+            <div class="tracking-line"></div>
+
+            <div class="tracking-step">
+                <span class="tracking-icon">📦</span>
+                <div>
+                    <strong>Picked Up</strong>
+                    <p>Delivery partner picked up your order</p>
+                </div>
+            </div>
+
+            <div class="tracking-line"></div>
+
+            <div class="tracking-step">
+                <span class="tracking-icon">🛵</span>
+                <div>
+                    <strong>Out for Delivery</strong>
+                    <p>Your order is on the way</p>
+                </div>
+            </div>
+
+            <div class="tracking-line"></div>
+
+            <div class="tracking-step">
+                <span class="tracking-icon">🏠</span>
+                <div>
+                    <strong>Delivered</strong>
+                    <p>Enjoy your delicious meal!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button
+            type="button"
+            class="success-btn"
+            onclick="closeSuccess()">
+            Continue Shopping
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ORDER HISTORY POPUP -->
+<div id="orderHistoryOverlay" class="order-history-overlay">
+
+    <div class="order-history-box">
+
+        <button
+            type="button"
+            class="order-history-close"
+            onclick="closeOrderHistory()">
+            ✕
+        </button>
+
+        <h2>📦 My Orders</h2>
+        <p class="order-history-subtitle">
+            Your previous orders
+        </p>
+
+        <div id="orderHistoryList">
+            <p>Your orders will appear here.</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+    <!-- =========================
+         LOGIN / SIGN UP POPUP
+    ========================== -->
+
+    <div
+        id="authOverlay"
+        class="auth-overlay">
+
+        <div class="auth-box">
+
+
+            <button
+                class="auth-close"
+                onclick="closeLogin()">
+
+                ✕
+
+            </button>
+
+
+            <!-- LOGIN -->
+
+            <div
+                id="loginForm"
+                class="auth-form">
+
+
+                <div class="auth-icon">
+                    👤
+                </div>
+
+
+                <h2>
+                    Welcome Back!
+                </h2>
+
+
+                <p class="auth-subtitle">
+                    Login to continue ordering
+                </p>
+
+
+                <form onsubmit="loginUser(event)">
+
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        required>
+
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        required>
+
+
+                    <button
+                        type="submit"
+                        class="auth-submit-btn">
+
+                        Login
+
+                    </button>
+
+
+                </form>
+
+
+                <p class="auth-switch">
+
+                    Don't have an account?
+
+                    <button
+                        onclick="showSignup()">
+
+                        Sign Up
+
+                    </button>
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- SIGN UP -->
+
+            <div
+                id="signupForm"
+                class="auth-form"
+                style="display: none;">
+
+
+                <div class="auth-icon">
+                    📝
+                </div>
+
+
+                <h2>
+                    Create Account
+                </h2>
+
+
+                <p class="auth-subtitle">
+                    Join Foodie today!
+                </p>
+
+
+                <form onsubmit="signupUser(event)">
+
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Enter your name"
+                        required>
+
+
+                    <label>
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Enter your email"
+                        required>
+
+
+                    <label>
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Create a password"
+                        required>
+
+
+                    <button
+                        type="submit"
+                        class="auth-submit-btn">
+
+                        Create Account
+
+                    </button>
+
+
+                </form>
+
+
+                <p class="auth-switch">
+
+                    Already have an account?
+
+                    <button
+                        onclick="showLogin()">
+
+                        Login
+
+                    </button>
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <h3>
+                🍴 Foodie
+            </h3>
+
+            <p>
+                Delicious food delivered to your doorstep.
+            </p>
+
+            <p>
+                © 2026 Foodie. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
